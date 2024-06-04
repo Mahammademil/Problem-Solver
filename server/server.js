@@ -6,21 +6,7 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.json());
-
-// CORS Konfiqurasiyası
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:3005', 'http://localhost:3006'];
-app.use(cors({
-  origin: function(origin, callback){
-    // allow requests with no origin 
-    // (like mobile apps or curl requests)
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){
-      var msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  }
-}));
+app.use(cors());
 
 // MongoDB bağlantısı
 mongoose.connect('mongodb://localhost:27017/problem-solver', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -45,6 +31,7 @@ app.post('/problems', async (req, res) => {
 });
 
 // Server
-app.listen(4000, () => {
-    console.log('Server running on port 4000');
+const port = process.env.PORT || 4001; // BURADA PORT TƏYİN EDİLİR
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });

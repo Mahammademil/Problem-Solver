@@ -2,6 +2,31 @@
   text-align: center;
 }
 
+/* Yeni Stil Qaydaları */
+body {
+  background-color: #f0f2f5;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #3f51b5;
+}
+
+input, button {
+  margin: 10px 0;
+}
+
+button {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.card {
+  margin-top: 20px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
