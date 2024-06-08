@@ -30,6 +30,18 @@ app.post('/problems', async (req, res) => {
     res.json(newProblem);
 });
 
+app.put('/api/problems/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, description } = req.body;
+  try {
+    const updatedProblem = await Problem.findByIdAndUpdate(id, { title, description }, { new: true });
+    res.json(updatedProblem);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating problem', error });
+  }
+});
+
+
 // Server
 const port = process.env.PORT || 4001; // BURADA PORT TƏYİN EDİLİR
 app.listen(port, () => {
