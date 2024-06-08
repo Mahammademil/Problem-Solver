@@ -30,7 +30,8 @@ app.post('/problems', async (req, res) => {
     res.json(newProblem);
 });
 
-app.put('/api/problems/:id', async (req, res) => {
+// Əlavə Ediləcək PUT Metodu
+app.put('/problems/:id', async (req, res) => {
   const { id } = req.params;
   const { title, description } = req.body;
   try {
@@ -41,6 +42,16 @@ app.put('/api/problems/:id', async (req, res) => {
   }
 });
 
+// Əlavə Ediləcək DELETE Metodu
+app.delete('/problems/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Problem.findByIdAndDelete(id);
+    res.json({ message: 'Problem deleted' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting problem', error });
+  }
+});
 
 // Server
 const port = process.env.PORT || 4001; // BURADA PORT TƏYİN EDİLİR

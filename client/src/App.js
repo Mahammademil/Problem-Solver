@@ -16,7 +16,7 @@ function App() {
 
   const fetchProblems = async () => {
     try {
-      const response = await axios.get('http://localhost:4001/api/problems');
+      const response = await axios.get('http://localhost:4001/problems');
       setProblems(response.data);
     } catch (error) {
       console.error('Error fetching problems:', error);
@@ -26,7 +26,7 @@ function App() {
   const addProblem = async () => {
     try {
       const newProblem = { title, description };
-      await axios.post('http://localhost:4001/api/problems', newProblem);
+      await axios.post('http://localhost:4001/problems', newProblem);
       setTitle('');
       setDescription('');
       fetchProblems();
@@ -37,7 +37,7 @@ function App() {
 
   const deleteProblem = async (id) => {
     try {
-      await axios.delete(`http://localhost:4001/api/problems/${id}`);
+      await axios.delete(`http://localhost:4001/problems/${id}`);
       fetchProblems();
     } catch (error) {
       console.error('Error deleting problem:', error);
@@ -47,7 +47,7 @@ function App() {
   const editProblem = async (id) => {
     try {
       const updatedProblem = { title: editTitle, description: editDescription };
-      await axios.put(`http://localhost:4001/api/problems/${id}`, updatedProblem);
+      await axios.put(`http://localhost:4001/problems/${id}`, updatedProblem);
       setEditTitle('');
       setEditDescription('');
       fetchProblems();
